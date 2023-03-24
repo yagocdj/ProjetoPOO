@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,8 +20,20 @@ public class Estacionamento {
 	public void entrar(String placa, int vaga) throws Exception {
 		if (!(vaga > 0 && vaga <= placas.length))
 			throw new Exception("Vaga inválida!");
-		if (placas[vaga-1] == null) 
-			placas[vaga-1] = placa;
+		if (placas[vaga-1] == null) {
+
+			FileWriter arquivoHistorico = new FileWriter(
+					"Valetinho/data/historico.csv", true);
+			LocalDateTime dataAtual = LocalDateTime.now();
+			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			String dataFormatada = dataAtual.format(formato);
+			placas[vaga - 1] = placa;
+			arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
+					dataFormatada, vaga, placas[vaga-1], "ENTRADA"));
+
+			arquivoHistorico.close();
+
+		}
 		else 
 			throw new Exception("Vaga ocupada!");
 	}
@@ -27,9 +41,20 @@ public class Estacionamento {
 	public void sair(int vaga) throws Exception {
 		if (placas[vaga-1] == null) 
 			throw new Exception("Vaga vazia!");
-		else 
-			placas[vaga-1] = null;
+		else {
 
+			FileWriter arquivoHistorico = new FileWriter(
+					"Valetinho/data/historico.csv", true);
+			LocalDateTime dataAtual = LocalDateTime.now();
+			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			String dataFormatada = dataAtual.format(formato);
+			arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
+					dataFormatada, vaga, placas[vaga-1], "SAIDA"));
+
+			arquivoHistorico.close();
+
+			placas[vaga - 1] = null;
+		}
 	}
 
 	public int consultarPlaca(String placa) throws Exception {
@@ -65,7 +90,7 @@ public class Estacionamento {
 
 		for (int i = 0; i < placas.length; i++) {
 			out[i] = placas[i];
-		} 
+		}
 		return out;
 
 	}
@@ -84,7 +109,7 @@ public class Estacionamento {
 	public void gravarDados() throws Exception {
 		try {
 
-			FileWriter arqplacas = new FileWriter("./Valetinho/data/placas.csv");
+			FileWriter arqplacas = new FileWriter("./Valetinho/data/placas.csv", true);
 
 			for (int i = 0; i < placas.length; i++) {
 				if (placas[i]!=null) {
