@@ -49,10 +49,14 @@ public class Estacionamento {
 		if (!(vaga1 > 0 && vaga1 < placas.length) && !(vaga2 > 0 && vaga2 < placas.length))
 			throw new Exception("Vaga(s) inválida(s)!");
 
-		if (placas[vaga1 - 1] != null && placas[vaga2 - 1] == null) 
-			placas[vaga2 - 1] = placas[vaga1 - 1];
-		else 
-			throw new Exception("Vaga(s) vazia(s)!");
+		if (placas[vaga1 - 1] != null)  { 
+			if (placas[vaga2 - 1] == null) {
+				placas[vaga2 - 1] = placas[vaga1 - 1];
+				placas[vaga1 - 1] = null;
+			} else 
+				throw new Exception("Vaga de destino ocupada!");
+		} else 
+			throw new Exception("Vaga de origem vazia!");
 	}
 
 	public String[] listarGeral() {
@@ -80,7 +84,7 @@ public class Estacionamento {
 	public void gravarDados() throws Exception {
 		try {
 
-			FileWriter arqplacas = new FileWriter("./data/placas.csv");
+			FileWriter arqplacas = new FileWriter("./Valetinho/data/placas.csv");
 
 			for (int i = 0; i < placas.length; i++) {
 				if (placas[i]!=null) {
@@ -95,14 +99,14 @@ public class Estacionamento {
 			arqplacas.close();
 
 		} catch (IOException e) {
-			throw new Exception("Erro na hora de criar o arquivo");
+			throw new Exception(e.getMessage());
 		}
 	}
 
 	public void lerDados() throws Exception{
 		try {
 
-			File arqplacas = new File("./data/placas.csv");
+			File arqplacas = new File("./Valetinho/data/placas.csv");
 
 			if (arqplacas.exists()) {
 				Scanner leitor = new Scanner(arqplacas);
