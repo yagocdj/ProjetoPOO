@@ -83,7 +83,7 @@ public class AplicacaoConsole3 {
 					}
 					break;
 				default: 
-					System.out.println("Opção Invalida!");;
+					System.out.println("Opção Invalida!");
 				}
 
 			}//try
@@ -100,7 +100,7 @@ public class AplicacaoConsole3 {
 		try {
 			estacionamento.gravarDados();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());;
+			System.out.println(e.getMessage());
 		}
 
 	}

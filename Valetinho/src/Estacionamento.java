@@ -31,8 +31,8 @@ public class Estacionamento {
 			arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
 					dataFormatada, vaga, placas[vaga-1], "ENTRADA"));
 
+			arquivoHistorico.flush();
 			arquivoHistorico.close();
-
 		}
 		else 
 			throw new Exception("Vaga ocupada!");
@@ -51,6 +51,7 @@ public class Estacionamento {
 			arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
 					dataFormatada, vaga, placas[vaga-1], "SAIDA"));
 
+			arquivoHistorico.flush();
 			arquivoHistorico.close();
 
 			placas[vaga - 1] = null;
