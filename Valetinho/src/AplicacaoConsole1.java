@@ -1,4 +1,3 @@
-
 /**
  * TSI - POO - Prof fausto Ayres
  * Teste da classe Estacionamento
@@ -31,7 +30,7 @@ public class AplicacaoConsole1 {
 			estacionamento.transferir(5,10);
 
 			int vaga = estacionamento.consultarPlaca("AAA5555");
-			System.out.println("vaga da placa AAA5555 = " + vaga);
+			System.out.println("vaga da placa AAA5555 = "+vaga);
 
 			System.out.println("listar vagas geral");
 			for(String s : estacionamento.listarGeral()) {

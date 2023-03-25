@@ -1,4 +1,3 @@
-
 /**
  * TSI - POO - Prof fausto Ayres
  * Teste da classe Estacionamento
@@ -7,15 +6,17 @@ import java.util.Scanner;
 import java.time.LocalDateTime;
 
 public class AplicacaoConsole3 {
-	public static void main(String[] args) throws Exception {
-		Estacionamento estacionamento = new Estacionamento(10);	//10 vagas
+	public static void main(String[] args) {
+		Estacionamento estacionamento = null;
 		
 		try {
+			estacionamento = new Estacionamento(10);	//10 vagas
 			estacionamento.lerDados();
 		} 
 		catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
+
 
 		String placa;
 		int vaga;
@@ -32,9 +33,9 @@ public class AplicacaoConsole3 {
 				System.out.println("1 - entrar carro");
 				System.out.println("2 - sair carro");
 				System.out.println("3 - consultar placa");
-				System.out.println("4 - transferir placa");
-				System.out.println("5 - listar geral");
-				System.out.println("6 - listar vagas livres");
+				System.out.println("3 - transferir placa");
+				System.out.println("4 - listar geral");
+				System.out.println("5 - listar vagas livres");
 				System.out.print("==>");
 				op = Integer.parseInt(teclado.nextLine());
 
@@ -83,7 +84,7 @@ public class AplicacaoConsole3 {
 					}
 					break;
 				default: 
-					System.out.println("OpÃ§Ã£o Invalida!");
+					System.out.println("Opção Invalida!");;
 				}
 
 			}//try
@@ -97,10 +98,12 @@ public class AplicacaoConsole3 {
 		}while(op != 0);
 
 		teclado.close();
+		
 		try {
 			estacionamento.gravarDados();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		} 
+		catch (Exception e) {
+			System.out.println(e.getMessage());;
 		}
 
 	}
