@@ -86,45 +86,51 @@ public class Valetinho extends JFrame {
 					//System.out.println("Volte sempre!!!"); 
 					break;
 				case "1" : 
+					JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
 					/**System.out.print("Qual a placa para entrar? ");
 					placa = teclado.nextLine();
 					System.out.print("Qual a vaga para entrar? ");
 					vaga = Integer.parseInt(teclado.nextLine());
 					estacionamento.entrar(placa, vaga); 
-					System.out.println("entrou");
-					break;**/
+					System.out.println("entrou");**/
+					break;
 				case "2" : 
+					JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
 					/**System.out.print("Qual a vaga para sair? ");
 					vaga = Integer.parseInt(teclado.nextLine());
 					estacionamento.sair(vaga); 
-					System.out.println("saiu");
-					break;**/
+					System.out.println("saiu");**/
+					break;
 				case "3" : 
+					JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
 					/**System.out.print("Qual a placa para consultar? ");
 					placa = teclado.nextLine();
 					vaga = estacionamento.consultarPlaca(placa); 
-					System.out.println("vaga="+vaga);
-					break;**/
+					System.out.println("vaga="+vaga);**/
+					break;
 				case "4" : 
+					JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
 					/**System.out.print("Qual a vaga origem? ");
 					vaga = Integer.parseInt(teclado.nextLine());
 					System.out.print("Qual a vaga destino? ");
 					int vagadestino = Integer.parseInt(teclado.nextLine());
 					estacionamento.transferir(vaga, vagadestino); 
-					System.out.println("transferiu");
-					break;**/
+					System.out.println("transferiu");**/
+					break;
 				case "5" : 
+					JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
 					/**System.out.println("listar vagas geral");
 					for(String s : estacionamento.listarGeral()) {
 						System.out.println(s);
-					}
-					break;**/
+					}**/
+					break;
 				case "6" : 
+					JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
 					/**System.out.println("listar vagas livres");
 					for(int i : estacionamento.listarLivres()) {
 						System.out.println(i);
-					}
-					break;**/
+					}**/
+					break;
 				default: 
 					JOptionPane.showMessageDialog(null, "Opção Invalida!"+operacao.getText());
 					//System.out.println("Opção Invalida!");;
@@ -175,13 +181,7 @@ public class Valetinho extends JFrame {
 		vagaConfirmar.setBounds(213, 258, 86, 23);
 		contentPane.add(vagaConfirmar);
 	}
-		public void checkOpcao(String opcao) {
-			opcao = operacao.getText();
-			if (opcao.equals("1"))
-				JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
-			
-			
-		}; 
+		
 }
 
 		
