@@ -79,7 +79,7 @@ public class Valetinho extends JFrame {
 		JButton opcaoConfirmar = new JButton("Confirmar");
 		opcaoConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
+				//JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
 			}
 		});
 		opcaoConfirmar.setBounds(67, 97, 86, 23);
@@ -87,7 +87,7 @@ public class Valetinho extends JFrame {
 		contentPane.add(opcaoConfirmar);
 		
 		JLabel lblNewLabel_2 = new JLabel("Placa");
-		lblNewLabel_2.setBounds(67, 167, 25, 14);
+		lblNewLabel_2.setBounds(67, 167, 86, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		placa1 = new JTextField();
@@ -102,7 +102,7 @@ public class Valetinho extends JFrame {
 		contentPane.add(placaConfirmar);
 		
 		JLabel lblNewLabel_4 = new JLabel("Da Vaga:");
-		lblNewLabel_4.setBounds(213, 167, 46, 14);
+		lblNewLabel_4.setBounds(213, 167, 86, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		sairVaga = new JTextField();
@@ -112,7 +112,7 @@ public class Valetinho extends JFrame {
 		sairVaga.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Para Vaga:");
-		lblNewLabel_5.setBounds(213, 213, 53, 14);
+		lblNewLabel_5.setBounds(213, 213, 86, 14);
 		contentPane.add(lblNewLabel_5);
 		
 		entrarVaga = new JTextField();
@@ -126,4 +126,14 @@ public class Valetinho extends JFrame {
 		vagaConfirmar.setBounds(213, 258, 86, 23);
 		contentPane.add(vagaConfirmar);
 	}
+		public String checkOpcao(String opcao) {
+			opcao = operacao.getText();
+			if (opcao.equals("1"))
+				JOptionPane.showMessageDialog(null, "Opção escolhida: "+operacao.getText());
+				return opcao;
+			
+		};
 }
+
+		
+		
