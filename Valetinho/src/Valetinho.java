@@ -57,7 +57,7 @@ public class Valetinho extends JFrame {
 		
 		JLabel titulo = new JLabel("Valetinho");
 		titulo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		titulo.setBounds(158, 11, 70, 28);
+		titulo.setBounds(158, 11, 65, 28);
 		contentPane.add(titulo);
 		
 		operacao = new JTextField();
