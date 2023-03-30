@@ -32,7 +32,7 @@ public class GUITeste {
 	private JTextField entradaTextFieldVaga;
 	private Estacionamento estacionamento;
 	private JTextField consultaTextFieldPlaca;
-	private JTextField saidatextFieldVaga;
+	private JTextField saidaTextFieldVaga;
 
 	/**
 	 * Launch the application.
@@ -168,7 +168,7 @@ public class GUITeste {
 			}
 		});
 
-		
+
 		JPanel consulta = new JPanel();
 		consulta.setLayout(null);
 		consulta.setBounds(0, 0, 434, 261);
@@ -208,37 +208,54 @@ public class GUITeste {
 		consultaTextFieldPlaca.setColumns(10);
 		consultaTextFieldPlaca.setBounds(43, 64, 143, 23);
 		consulta.add(consultaTextFieldPlaca);
-		
-				JPanel saida = new JPanel();
-				saida.setBounds(0, 0, 434, 261);
-				frameValetinho.getContentPane().add(saida);
-				saida.setLayout(null);
-				
-						JLabel saidaLabelVaga = new JLabel("Vaga de Saída:");
-						saidaLabelVaga.setBounds(48, 47, 94, 25);
-						saida.add(saidaLabelVaga);
-						
-								saidatextFieldVaga = new JTextField();
-								saidatextFieldVaga.setBounds(147, 49, 89, 20);
-								saida.add(saidatextFieldVaga);
-								saidatextFieldVaga.setColumns(10);
-								
-										JButton sairButtonConfirmar = new JButton("Confirmar");
-										sairButtonConfirmar.setBounds(48, 92, 89, 23);
-										saida.add(sairButtonConfirmar);
-										
-												JButton sairButtonCancelar = new JButton("Cancelar");
-												
-												
-														sairButtonCancelar.setBounds(147, 92, 89, 23);
-														saida.add(sairButtonCancelar);
-														
-																sairButtonCancelar.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent e) {
-																		frameValetinho.setContentPane(home);
-																	}
-																});
-		
+
+		JPanel saida = new JPanel();
+		saida.setBounds(0, 0, 434, 261);
+		frameValetinho.getContentPane().add(saida);
+		saida.setLayout(null);
+
+		JLabel saidaLabelVaga = new JLabel("Vaga de Saída:");
+		saidaLabelVaga.setBounds(48, 47, 94, 25);
+		saida.add(saidaLabelVaga);
+
+		saidaTextFieldVaga = new JTextField();
+		saidaTextFieldVaga.setBounds(147, 49, 89, 20);
+		saida.add(saidaTextFieldVaga);
+		saidaTextFieldVaga.setColumns(10);
+
+		JButton sairButtonConfirmar = new JButton("Confirmar");
+		sairButtonConfirmar.setBounds(48, 92, 89, 23);
+		saida.add(sairButtonConfirmar);
+
+		JButton sairButtonCancelar = new JButton("Cancelar");
+		sairButtonCancelar.setBounds(147, 92, 89, 23);
+		saida.add(sairButtonCancelar);
+
+		JTextArea saidaTextArea = new JTextArea();
+		saidaTextArea.setEditable(false);
+		saidaTextArea.setBounds(48, 141, 188, 52);
+		saida.add(saidaTextArea);
+
+		sairButtonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameValetinho.setContentPane(home);
+			}
+		});
+
+
+		sairButtonConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {		
+					estacionamento.sair(Integer.parseInt(saidaTextFieldVaga.getText()));
+					saidaTextArea.setText("Vaga desocupada com êxito!");
+				}
+
+				catch (Exception err) {
+					saidaTextArea.setText(String.format(err.getMessage()));
+				}
+			}
+		});
+
 		entrada_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(entrada);
@@ -250,7 +267,7 @@ public class GUITeste {
 				frameValetinho.setContentPane(saida);
 			}
 		});
-		
+
 		homeConsultaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(consulta);
