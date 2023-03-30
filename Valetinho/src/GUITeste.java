@@ -1,35 +1,23 @@
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Color;
-import javax.swing.UIManager;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JTextField;
-import javax.swing.JLayeredPane;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTable;
-import javax.swing.JList;
-import javax.swing.border.BevelBorder;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import javax.swing.JScrollBar;
+import javax.swing.JTextField;
 
 public class GUITeste {
 
-	private JFrame frmValetinho;
+	private JFrame frameValetinho;
 	private JTextField insPlacaField;
 	private JTextField insVagaField;
+	private JTextField vagaOrigemTextField;
+	private JTextField vagaDestinoTextField;
 	private Estacionamento estacionamento;
 
 	/**
@@ -40,7 +28,7 @@ public class GUITeste {
 			public void run() {
 				try {
 					GUITeste window = new GUITeste();
-					window.frmValetinho.setVisible(true);
+					window.frameValetinho.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,9 +41,9 @@ public class GUITeste {
 	 */
 	public GUITeste() {
 		try {
-		estacionamento = new Estacionamento(10);
-		estacionamento.lerDados();
-		initialize();
+			estacionamento = new Estacionamento(10);
+			estacionamento.lerDados();
+			initialize();
 		} catch (Exception err) {
 			System.out.println(err.getMessage());
 		}
@@ -66,58 +54,58 @@ public class GUITeste {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmValetinho = new JFrame();
-		frmValetinho.setTitle("Valetinho");
-		frmValetinho.setBounds(100, 100, 450, 300);
-		frmValetinho.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmValetinho.getContentPane().setLayout(null);
+		frameValetinho = new JFrame();
+		frameValetinho.setTitle("Valetinho");
+		frameValetinho.setBounds(100, 100, 450, 300);
+		frameValetinho.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameValetinho.getContentPane().setLayout(null);
 		
 		JPanel home = new JPanel();
 
 		home.setBounds(0, 0, 434, 261);
-		frmValetinho.getContentPane().add(home);
+		frameValetinho.getContentPane().add(home);
 		home.setLayout(null);
 		
-		JButton situacao = new JButton("Situação");
-		situacao.setBounds(110, 11, 89, 23);
-		home.add(situacao);
+		JButton situacaoButton = new JButton("Situação");
+		situacaoButton.setBounds(110, 11, 89, 23);
+		home.add(situacaoButton);
 		
-		JButton vagas = new JButton("Vagas");
-		vagas.setBounds(219, 11, 89, 23);
-		home.add(vagas);
+		JButton vagasButton = new JButton("Vagas");
+		vagasButton.setBounds(219, 11, 89, 23);
+		home.add(vagasButton);
 		
-		JButton consulta = new JButton("Consulta");
-		consulta.setBounds(110, 171, 89, 23);
-		home.add(consulta);
+		JButton consultaButton = new JButton("Consulta");
+		consultaButton.setBounds(110, 171, 89, 23);
+		home.add(consultaButton);
 		
-		JButton entrada_1 = new JButton("Entrada");
+		JButton entradaButton = new JButton("Entrada");
 		
-		entrada_1.setBounds(110, 205, 89, 23);
-		home.add(entrada_1);
+		entradaButton.setBounds(110, 205, 89, 23);
+		home.add(entradaButton);
 		
-		JButton transferir = new JButton("Transferir");
-		transferir.setBounds(219, 171, 89, 23);
-		home.add(transferir);
+		JButton transferirButton = new JButton("Transferir");
+		transferirButton.setBounds(219, 171, 89, 23);
+		home.add(transferirButton);
 		
-		JButton saida = new JButton("Saída");
-		saida.setBounds(219, 205, 89, 23);
-		home.add(saida);
+		JButton saidaButton = new JButton("Saída");
+		saidaButton.setBounds(219, 205, 89, 23);
+		home.add(saidaButton);
 		
-		JTextArea txtVagas = new JTextArea();
+		JTextArea vagasTextArea = new JTextArea();
 		
 		String [] vagasAtuais = this.estacionamento.listarGeral();
 		int tamanho = vagasAtuais.length;
 		
 		for (int i = 0; i < tamanho; i++) {
 			System.out.println(vagasAtuais[i]);
-			txtVagas.append(String.format("%s%n",vagasAtuais[i]));
+			vagasTextArea.append(String.format("%s%n",vagasAtuais[i]));
 		}
 		
-		txtVagas.setEnabled(false);
-		txtVagas.setEditable(false);
-		txtVagas.setBounds(110, 45, 198, 115);
+		vagasTextArea.setEnabled(false);
+		vagasTextArea.setEditable(false);
+		vagasTextArea.setBounds(110, 45, 198, 115);
 		
-		home.add(txtVagas);
+		home.add(vagasTextArea);
 		
 		JPanel entrada = new JPanel();
 		entrada.setBounds(0, 0, 434, 261);
@@ -158,16 +146,50 @@ public class GUITeste {
 		entrada.add(insLblStatus);
 		JButton confirmar = new JButton("Confirmar");
 		
+		JPanel transferirPanel = new JPanel();
+		transferirPanel.setBounds(0, 0, 434, 261);
+		transferirPanel.setLayout(null);
+		
+		JLabel tituloLabel = new JLabel("Transferir");
+		tituloLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tituloLabel.setBounds(178, 10, 75, 20);
+		transferirPanel.add(tituloLabel);
+		
+		vagaOrigemTextField = new JTextField();
+		vagaOrigemTextField.setBounds(216, 76, 96, 19);
+		vagaOrigemTextField.setColumns(10);
+		transferirPanel.add(vagaOrigemTextField);
+		
+		vagaDestinoTextField = new JTextField();
+		vagaDestinoTextField.setBounds(216, 125, 96, 19);
+		vagaDestinoTextField.setColumns(10);
+		transferirPanel.add(vagaDestinoTextField);
+		
+		JLabel vagaOrigemLabel = new JLabel("№ da vaga de origem");
+		vagaOrigemLabel.setBounds(87, 75, 125, 19);
+		transferirPanel.add(vagaOrigemLabel);
+		
+		JLabel vagaDestinoLabel = new JLabel("№ da vaga de destino");
+		vagaDestinoLabel.setBounds(87, 125, 125, 19);
+		transferirPanel.add(vagaDestinoLabel);
+		
+		JButton confirmarTransferenciaButton = new JButton("Confirmar");
+		confirmarTransferenciaButton.setBounds(112, 210, 85, 21);
+		transferirPanel.add(confirmarTransferenciaButton);
+		
+		JButton cancelarTransferenciaButton = new JButton("Cancelar");
+		cancelarTransferenciaButton.setBounds(214, 210, 85, 21);
+		transferirPanel.add(cancelarTransferenciaButton);
 		
 		cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmValetinho.setContentPane(home);
+				frameValetinho.setContentPane(home);
 			}
 		});
 		
-		entrada_1.addActionListener(new ActionListener() {
+		entradaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmValetinho.setContentPane(entrada);
+				frameValetinho.setContentPane(entrada);
 			}
 		});
 		
@@ -181,6 +203,36 @@ public class GUITeste {
 				}
 			}
 		});
+		
+		transferirButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameValetinho.setContentPane(transferirPanel);
+			}
+		});
+		
+		confirmarTransferenciaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int vagaOrigem = Integer.parseInt(vagaOrigemTextField.getText());
+					int vagaDestino = Integer.parseInt(vagaDestinoTextField.getText());
+					System.out.println("Vagas -> " + vagaOrigem + " e " + vagaDestino);
+					int opcao = JOptionPane.showConfirmDialog(
+						null,
+						String.format("Deseja mesmo transferir o veículo da vaga %s para a vaga %s?", vagaOrigem, vagaDestino));
+					if (opcao == JOptionPane.YES_NO_OPTION)
+						estacionamento.transferir(vagaOrigem, vagaDestino);
+				} catch (Exception err) {
+					JOptionPane.showMessageDialog(null, "Ops! " + err.getMessage());
+				}
+			}
+		});
+		
+		cancelarTransferenciaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameValetinho.setContentPane(home);
+			}
+		});
+		
 		confirmar.setBounds(142, 202, 89, 23);
 		entrada.add(confirmar);
 	}
