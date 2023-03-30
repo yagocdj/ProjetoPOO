@@ -98,13 +98,13 @@ public class Estacionamento {
 
 	public ArrayList<Integer> listarLivres() {
 
-		ArrayList<Integer> vagasLivres = new ArrayList<>();
+		ArrayList<Integer> out = new ArrayList<>();
 
 		for (int i = 0; i < placas.length; i++) {
 			if (placas[i] == null)
-				vagasLivres.add(i + 1);
+				out.add(i + 1);
 		}
-		return vagasLivres;
+		return out;
 	}
 
 	public void gravarDados() throws Exception {
