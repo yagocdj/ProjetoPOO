@@ -22,10 +22,10 @@ public class Valetinho extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField operacao;
-	private JLabel lblNewLabel_1;
-	private JTextField placa1;
-	private JTextField sairVaga;
-	private JTextField entrarVaga;
+	private JLabel operacaoLabel;
+	private JTextField placaInput;
+	private JTextField vagaOrigemInput;
+	private JTextField vagaDestinoInput;
 
 	/**
 	 * Launch the application.
@@ -57,7 +57,7 @@ public class Valetinho extends JFrame {
 		
 		JLabel titulo = new JLabel("Valetinho");
 		titulo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		titulo.setBounds(158, 11, 65, 28);
+		titulo.setBounds(158, 11, 75, 28);
 		contentPane.add(titulo);
 		
 		operacao = new JTextField();
@@ -65,12 +65,13 @@ public class Valetinho extends JFrame {
 		contentPane.add(operacao);
 		operacao.setColumns(10);
 		
-		lblNewLabel_1 = new JLabel("Opção");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(67, 50, 35, 14);
-		contentPane.add(lblNewLabel_1);
+		operacaoLabel = new JLabel("Opção");
+		operacaoLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		operacaoLabel.setBounds(67, 50, 35, 14);
+		contentPane.add(operacaoLabel);
 		
 		JTextArea menuOpcoes = new JTextArea();
+		menuOpcoes.setEditable(false);
 		menuOpcoes.setText(" 0 - terminar programa\r\n 1 - entrar carro\r\n 2 - sair carro\r\n 3 - consultar placa\r\n 4 - transferir placa\r\n 5 - listar geral\r\n 6 - listar vagas livres");
 		menuOpcoes.setBounds(193, 50, 148, 109);
 		menuOpcoes.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -141,45 +142,45 @@ public class Valetinho extends JFrame {
 		opcaoConfirmar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		contentPane.add(opcaoConfirmar);
 		
-		JLabel lblNewLabel_2 = new JLabel("Placa");
-		lblNewLabel_2.setBounds(67, 167, 86, 14);
-		contentPane.add(lblNewLabel_2);
+		JLabel inserirPlacaLabel = new JLabel("Placa");
+		inserirPlacaLabel.setBounds(67, 167, 86, 14);
+		contentPane.add(inserirPlacaLabel);
 		
-		placa1 = new JTextField();
-		placa1.setEnabled(false);
-		placa1.setBounds(67, 182, 86, 20);
-		contentPane.add(placa1);
-		placa1.setColumns(10);
+		placaInput = new JTextField();
+		placaInput.setEnabled(false);
+		placaInput.setBounds(67, 182, 86, 20);
+		contentPane.add(placaInput);
+		placaInput.setColumns(10);
 		
-		JButton placaConfirmar = new JButton("Confirmar");
-		placaConfirmar.setEnabled(false);
-		placaConfirmar.setBounds(67, 213, 86, 23);
-		contentPane.add(placaConfirmar);
+		JButton placaConfirmarButton = new JButton("Confirmar");
+		placaConfirmarButton.setEnabled(false);
+		placaConfirmarButton.setBounds(67, 213, 86, 23);
+		contentPane.add(placaConfirmarButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("Da Vaga:");
-		lblNewLabel_4.setBounds(213, 167, 86, 14);
-		contentPane.add(lblNewLabel_4);
+		JLabel vagaOrigemLabel = new JLabel("Da Vaga:");
+		vagaOrigemLabel.setBounds(213, 167, 86, 14);
+		contentPane.add(vagaOrigemLabel);
 		
-		sairVaga = new JTextField();
-		sairVaga.setEnabled(false);
-		sairVaga.setBounds(213, 182, 86, 20);
-		contentPane.add(sairVaga);
-		sairVaga.setColumns(10);
+		vagaOrigemInput = new JTextField();
+		vagaOrigemInput.setEnabled(false);
+		vagaOrigemInput.setBounds(213, 182, 86, 20);
+		contentPane.add(vagaOrigemInput);
+		vagaOrigemInput.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Para Vaga:");
-		lblNewLabel_5.setBounds(213, 213, 86, 14);
-		contentPane.add(lblNewLabel_5);
+		JLabel vagaDestinoLabel = new JLabel("Para Vaga:");
+		vagaDestinoLabel.setBounds(213, 213, 86, 14);
+		contentPane.add(vagaDestinoLabel);
 		
-		entrarVaga = new JTextField();
-		entrarVaga.setEnabled(false);
-		entrarVaga.setBounds(213, 227, 86, 20);
-		contentPane.add(entrarVaga);
-		entrarVaga.setColumns(10);
+		vagaDestinoInput = new JTextField();
+		vagaDestinoInput.setEnabled(false);
+		vagaDestinoInput.setBounds(213, 227, 86, 20);
+		contentPane.add(vagaDestinoInput);
+		vagaDestinoInput.setColumns(10);
 		
-		JButton vagaConfirmar = new JButton("Confirmar");
-		vagaConfirmar.setEnabled(false);
-		vagaConfirmar.setBounds(213, 258, 86, 23);
-		contentPane.add(vagaConfirmar);
+		JButton vagaConfirmarButton = new JButton("Confirmar");
+		vagaConfirmarButton.setEnabled(false);
+		vagaConfirmarButton.setBounds(213, 258, 86, 23);
+		contentPane.add(vagaConfirmarButton);
 	}
 		
 }
