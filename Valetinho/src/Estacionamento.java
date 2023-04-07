@@ -110,7 +110,7 @@ public class Estacionamento {
 	public void gravarDados() throws Exception {
 		try {
 
-			FileWriter arqplacas = new FileWriter("./Valetinho/data/placas.csv", true);
+			FileWriter arqplacas = new FileWriter("./Valetinho/data/placas.csv");
 
 			for (int i = 0; i < placas.length; i++) {
 				if (placas[i]!=null) {
