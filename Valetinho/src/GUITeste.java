@@ -14,14 +14,46 @@ import javax.swing.JTextField;
 public class GUITeste {
 
 	private JFrame frameValetinho;
-	private JTextField entradaTextFieldPlaca;
-	private JTextField entradaTextFieldVaga;
-	private JTextField consultaTextFieldPlaca;
-	private JTextField saidaTextFieldVaga;
-	private JTextField vagaOrigemTextField;
-	private JTextField vagaDestinoTextField;
+	private JTextField textfieldEntradaPlaca;
+	private JTextField textfieldEntradaVaga;
+	private JTextField textfieldConsultaPlaca;
+	private JTextField textfieldSaidaVaga;
+	private JTextField textfieldTransferenciaOrigem;
+	private JTextField textfieldTransferenciaDestino;
 	private Estacionamento estacionamento;
-
+	private JPanel panelHome;
+	private JButton btnHomeVagas;
+	private JButton btnHomeSituacao;
+	private JButton btnHomeConsulta;
+	private JButton btnHomeEntrada;
+	private JButton btnHomeTransferir;
+	private JButton btnHomeSaida;
+	private JTextArea textareaHomeVagas;
+	private JPanel panelEntrada;
+	private JButton btnEntradaCancelar;
+	private JLabel lblEntradaDescricao;
+	private JLabel lblEntradaPlaca;
+	private JLabel lblEntradaVaga;
+	private JTextArea textareaEntradaStatus;
+	private JButton btnEntradaConfirmar;
+	private JPanel panelTransferir;
+	private JLabel lblTransferenciaTitulo;
+	private JLabel lblTransferenciaOrigem;
+	private JLabel lblTransferenciaDestino;
+	private JButton btnTransferenciaConfirmar;
+	private JButton btnTransferenciaCancelar;
+	private JPanel panelConsulta;
+	private JButton btnConsultaCancelar;
+	private JLabel lblConsultaDescricao;
+	private JLabel lblConsultaPlaca;
+	private JTextArea textareaConsultaStatus;
+	private JButton btnConsultaConfirmar;
+	private JPanel panelSaida;
+	private JLabel lblSaidaVaga;
+	private JButton btnSairConfirmar;
+	private JButton btnSairCancelar;
+	private JTextArea textareaSaida;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -62,134 +94,195 @@ public class GUITeste {
 		frameValetinho.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameValetinho.getContentPane().setLayout(null);
 
-		JPanel home = new JPanel();
+		panelHome = new JPanel();
+		panelHome.setBounds(0, 0, 434, 261);
+		panelHome.setLayout(null);
+		frameValetinho.getContentPane().add(panelHome);
 
-		home.setBounds(0, 0, 434, 261);
-		frameValetinho.getContentPane().add(home);
-
-		home.setLayout(null);
-
-		JButton situacao = new JButton("Situação");
-		situacao.setBounds(110, 11, 89, 23);
-		home.add(situacao);
-
-		JButton vagas = new JButton("Vagas");
-		vagas.setBounds(219, 11, 89, 23);
-		home.add(vagas);
-
-		JButton homeConsultaButton = new JButton("Consulta");
-		homeConsultaButton.setBounds(110, 171, 89, 23);
-		home.add(homeConsultaButton);
-
-		JButton entrada_1 = new JButton("Entrada");
-
-		entrada_1.setBounds(110, 205, 89, 23);
-		home.add(entrada_1);
-
-		JButton transferirButton = new JButton("Transferir");
-		transferirButton.setBounds(219, 171, 89, 23);
-		home.add(transferirButton);
-
-		JButton saida_1 = new JButton("Saída");
-		saida_1.setBounds(219, 205, 89, 23);
-		home.add(saida_1);
-
-		JTextArea txtVagas = new JTextArea();
-
-		txtVagas.setEnabled(false);
-		txtVagas.setEditable(false);
-		txtVagas.setBounds(110, 45, 198, 115);
-
-		home.add(txtVagas);
-
-		JPanel entrada = new JPanel();
-		entrada.setBounds(0, 0, 434, 261);
-		entrada.setLayout(null);
-
-		JButton entradaButtonCancelar = new JButton("Cancelar");
-		entradaButtonCancelar.setBounds(142, 202, 89, 23);
-		entrada.add(entradaButtonCancelar);
-
-		entradaTextFieldPlaca = new JTextField();
-		entradaTextFieldPlaca.setBounds(43, 64, 143, 23);
-		entrada.add(entradaTextFieldPlaca);
-		entradaTextFieldPlaca.setColumns(10);
-
-		JLabel entradaLabelDescricao = new JLabel("Digite os dados a serem inseridos.");
-		entradaLabelDescricao.setBounds(43, 11, 334, 23);
-		entrada.add(entradaLabelDescricao);
-
-		JLabel entradaLabelPlaca = new JLabel("Placa");
-		entradaLabelPlaca.setBounds(43, 45, 46, 14);
-		entrada.add(entradaLabelPlaca);
-
-		entradaTextFieldVaga = new JTextField();
-		entradaTextFieldVaga.setBounds(196, 64, 28, 23);
-		entrada.add(entradaTextFieldVaga);
-		entradaTextFieldVaga.setColumns(10);
-
-		JLabel entradaLabelVaga = new JLabel("Vaga");
-		entradaLabelVaga.setBounds(196, 45, 46, 14);
-		entrada.add(entradaLabelVaga);
-
-		JTextArea entradaTextAreaStatus = new JTextArea();
-		entradaTextAreaStatus.setWrapStyleWord(true);
-		entradaTextAreaStatus.setLineWrap(true);
-		entradaTextAreaStatus.setEnabled(false);
-		entradaTextAreaStatus.setEditable(false);
-		entradaTextAreaStatus.setBounds(43, 98, 334, 93);
-		entrada.add(entradaTextAreaStatus);
-		JButton entradaButtonConfirmar = new JButton("Confirmar");
-		frameValetinho.getContentPane().add(entrada);
-		entradaButtonConfirmar.setBounds(43, 202, 89, 23);
-		entrada.add(entradaButtonConfirmar);
-
-		JPanel transferirPanel = new JPanel();
-		transferirPanel.setBounds(0, 0, 434, 261);
-		transferirPanel.setLayout(null);
 		
-		JLabel tituloLabel = new JLabel("Transferir");
-		tituloLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tituloLabel.setBounds(178, 10, 75, 20);
-		transferirPanel.add(tituloLabel);
+
+		btnHomeSituacao = new JButton("Situação");
+		btnHomeSituacao.setBounds(110, 11, 89, 23);
+		panelHome.add(btnHomeSituacao);
+
+		btnHomeVagas = new JButton("Vagas");
+		btnHomeVagas.setBounds(219, 11, 89, 23);
+		panelHome.add(btnHomeVagas);
+
+		btnHomeConsulta = new JButton("Consulta");
+		btnHomeConsulta.setBounds(110, 171, 89, 23);
+		panelHome.add(btnHomeConsulta);
+
+		btnHomeEntrada = new JButton("Entrada");
+		btnHomeEntrada.setBounds(110, 205, 89, 23);
+		panelHome.add(btnHomeEntrada);
+
+		btnHomeTransferir = new JButton("Transferir");
+		btnHomeTransferir.setBounds(219, 171, 89, 23);
+		panelHome.add(btnHomeTransferir);
+
+		btnHomeSaida = new JButton("Saída");
+		btnHomeSaida.setBounds(219, 205, 89, 23);
+		panelHome.add(btnHomeSaida);
+
+		textareaHomeVagas = new JTextArea();
+		textareaHomeVagas.setEnabled(false);
+		textareaHomeVagas.setEditable(false);
+		textareaHomeVagas.setBounds(110, 45, 198, 115);
+		panelHome.add(textareaHomeVagas);
+
+		panelEntrada = new JPanel();
+		panelEntrada.setBounds(0, 0, 434, 261);
+		panelEntrada.setLayout(null);
+
+		btnEntradaCancelar = new JButton("Cancelar");
+		btnEntradaCancelar.setBounds(142, 202, 89, 23);
+		panelEntrada.add(btnEntradaCancelar);
+
+		textfieldEntradaPlaca = new JTextField();
+		textfieldEntradaPlaca.setBounds(43, 64, 143, 23);
+		panelEntrada.add(textfieldEntradaPlaca);
+		textfieldEntradaPlaca.setColumns(10);
+
+		lblEntradaDescricao = new JLabel("Digite os dados a serem inseridos.");
+		lblEntradaDescricao.setBounds(43, 11, 334, 23);
+		panelEntrada.add(lblEntradaDescricao);
+
+		lblEntradaPlaca = new JLabel("Placa");
+		lblEntradaPlaca.setBounds(43, 45, 46, 14);
+		panelEntrada.add(lblEntradaPlaca);
+
+		textfieldEntradaVaga = new JTextField();
+		textfieldEntradaVaga.setBounds(196, 64, 28, 23);
+		panelEntrada.add(textfieldEntradaVaga);
+		textfieldEntradaVaga.setColumns(10);
+
+		lblEntradaVaga = new JLabel("Vaga");
+		lblEntradaVaga.setBounds(196, 45, 46, 14);
+		panelEntrada.add(lblEntradaVaga);
+
+		textareaEntradaStatus = new JTextArea();
+		textareaEntradaStatus.setWrapStyleWord(true);
+		textareaEntradaStatus.setLineWrap(true);
+		textareaEntradaStatus.setEnabled(false);
+		textareaEntradaStatus.setEditable(false);
+		textareaEntradaStatus.setBounds(43, 98, 334, 93);
+		panelEntrada.add(textareaEntradaStatus);
+		btnEntradaConfirmar = new JButton("Confirmar");
+		frameValetinho.getContentPane().add(panelEntrada);
+		btnEntradaConfirmar.setBounds(43, 202, 89, 23);
+		panelEntrada.add(btnEntradaConfirmar);
+
+		panelTransferir = new JPanel();
+		panelTransferir.setBounds(0, 0, 434, 261);
+		panelTransferir.setLayout(null);
+		frameValetinho.getContentPane().add(panelTransferir);
 		
-		vagaOrigemTextField = new JTextField();
-		vagaOrigemTextField.setBounds(216, 76, 96, 19);
-		vagaOrigemTextField.setColumns(10);
-		transferirPanel.add(vagaOrigemTextField);
+		lblTransferenciaTitulo = new JLabel("Transferir");
+		lblTransferenciaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTransferenciaTitulo.setBounds(178, 10, 75, 20);
+		panelTransferir.add(lblTransferenciaTitulo);
 		
-		vagaDestinoTextField = new JTextField();
-		vagaDestinoTextField.setBounds(216, 125, 96, 19);
-		vagaDestinoTextField.setColumns(10);
-		transferirPanel.add(vagaDestinoTextField);
+		textfieldTransferenciaOrigem = new JTextField();
+		textfieldTransferenciaOrigem.setBounds(216, 76, 96, 19);
+		textfieldTransferenciaOrigem.setColumns(10);
+		panelTransferir.add(textfieldTransferenciaOrigem);
 		
-		JLabel vagaOrigemLabel = new JLabel("№ da vaga de origem");
-		vagaOrigemLabel.setBounds(87, 75, 125, 19);
-		transferirPanel.add(vagaOrigemLabel);
+		textfieldTransferenciaDestino = new JTextField();
+		textfieldTransferenciaDestino.setBounds(216, 125, 96, 19);
+		textfieldTransferenciaDestino.setColumns(10);
+		panelTransferir.add(textfieldTransferenciaDestino);
 		
-		JLabel vagaDestinoLabel = new JLabel("№ da vaga de destino");
-		vagaDestinoLabel.setBounds(87, 125, 125, 19);
-		transferirPanel.add(vagaDestinoLabel);
+		lblTransferenciaOrigem = new JLabel("№ da vaga de origem");
+		lblTransferenciaOrigem.setBounds(87, 75, 125, 19);
+		panelTransferir.add(lblTransferenciaOrigem);
 		
-		JButton confirmarTransferenciaButton = new JButton("Confirmar");
-		confirmarTransferenciaButton.setBounds(112, 210, 85, 21);
-		transferirPanel.add(confirmarTransferenciaButton);
+		lblTransferenciaDestino = new JLabel("№ da vaga de destino");
+		lblTransferenciaDestino.setBounds(87, 125, 125, 19);
+		panelTransferir.add(lblTransferenciaDestino);
 		
-		JButton cancelarTransferenciaButton = new JButton("Cancelar");
-		cancelarTransferenciaButton.setBounds(214, 210, 85, 21);
-		transferirPanel.add(cancelarTransferenciaButton);
+		btnTransferenciaConfirmar = new JButton("Confirmar");
+		btnTransferenciaConfirmar.setBounds(112, 210, 85, 21);
+		panelTransferir.add(btnTransferenciaConfirmar);
 		
-		transferirButton.addActionListener(new ActionListener() {
+		btnTransferenciaCancelar = new JButton("Cancelar");
+		btnTransferenciaCancelar.setBounds(214, 210, 85, 21);
+		panelTransferir.add(btnTransferenciaCancelar);
+
+
+		panelConsulta = new JPanel();
+		panelConsulta.setLayout(null);
+		panelConsulta.setBounds(0, 0, 434, 261);
+		frameValetinho.getContentPane().add(panelConsulta);
+
+
+		btnConsultaCancelar = new JButton("Cancelar");
+		btnConsultaCancelar.setBounds(142, 202, 89, 23);
+		panelConsulta.add(btnConsultaCancelar);
+
+		lblConsultaDescricao = new JLabel("Digite a placa a ser consultada.");
+		lblConsultaDescricao.setBounds(43, 11, 334, 23);
+		panelConsulta.add(lblConsultaDescricao);
+
+		lblConsultaPlaca = new JLabel("Placa");
+		lblConsultaPlaca.setBounds(43, 45, 46, 14);
+		panelConsulta.add(lblConsultaPlaca);
+
+		textareaConsultaStatus = new JTextArea();
+		textareaConsultaStatus.setWrapStyleWord(true);
+		textareaConsultaStatus.setLineWrap(true);
+		textareaConsultaStatus.setEnabled(false);
+		textareaConsultaStatus.setEditable(false);
+		textareaConsultaStatus.setBounds(43, 98, 334, 93);
+		panelConsulta.add(textareaConsultaStatus);
+
+		btnConsultaConfirmar = new JButton("Confirmar");
+		btnConsultaConfirmar.setBounds(43, 202, 89, 23);
+		panelConsulta.add(btnConsultaConfirmar);
+
+		textfieldConsultaPlaca = new JTextField();
+		textfieldConsultaPlaca.setColumns(10);
+		textfieldConsultaPlaca.setBounds(43, 64, 143, 23);
+		panelConsulta.add(textfieldConsultaPlaca);
+
+		panelSaida = new JPanel();
+		panelSaida.setBounds(0, 0, 434, 261);
+		frameValetinho.getContentPane().add(panelSaida);
+		panelSaida.setLayout(null);
+
+		lblSaidaVaga = new JLabel("Vaga de Saída:");
+		lblSaidaVaga.setBounds(48, 47, 94, 25);
+		panelSaida.add(lblSaidaVaga);
+
+		textfieldSaidaVaga = new JTextField();
+		textfieldSaidaVaga.setBounds(147, 49, 89, 20);
+		panelSaida.add(textfieldSaidaVaga);
+		textfieldSaidaVaga.setColumns(10);
+
+		btnSairConfirmar = new JButton("Confirmar");
+		btnSairConfirmar.setBounds(48, 92, 89, 23);
+		panelSaida.add(btnSairConfirmar);
+
+		btnSairCancelar = new JButton("Cancelar");
+		btnSairCancelar.setBounds(147, 92, 89, 23);
+		panelSaida.add(btnSairCancelar);
+
+		textareaSaida = new JTextArea();
+		textareaSaida.setEditable(false);
+		textareaSaida.setBounds(48, 141, 188, 52);
+		panelSaida.add(textareaSaida);
+		
+		btnHomeTransferir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(transferirPanel);
+				frameValetinho.setContentPane(panelTransferir);
 			}
 		});
 		
-		confirmarTransferenciaButton.addActionListener(new ActionListener() {
+		btnTransferenciaConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					int vagaOrigem = Integer.parseInt(vagaOrigemTextField.getText());
-					int vagaDestino = Integer.parseInt(vagaDestinoTextField.getText());
+					int vagaOrigem = Integer.parseInt(textfieldTransferenciaOrigem.getText());
+					int vagaDestino = Integer.parseInt(textfieldTransferenciaDestino.getText());
 					int opcao = JOptionPane.showConfirmDialog(
 						null,
 						String.format("Deseja mesmo transferir o veículo da vaga %s para a vaga %s?", vagaOrigem, vagaDestino));
@@ -201,152 +294,91 @@ public class GUITeste {
 			}
 		});
 		
-		cancelarTransferenciaButton.addActionListener(new ActionListener() {
+		btnTransferenciaCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(home);
+				frameValetinho.setContentPane(panelHome);
 			}
 		});
 
-		entradaButtonConfirmar.addActionListener(new ActionListener() {
+		btnEntradaConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					estacionamento.entrar(entradaTextFieldPlaca.getText(), Integer.parseInt(entradaTextFieldVaga.getText()));
-					entradaTextAreaStatus.setText("Carro inserido com êxito!");
+					estacionamento.entrar(textfieldEntradaPlaca.getText(), Integer.parseInt(textfieldEntradaVaga.getText()));
+					textareaEntradaStatus.setText("Carro inserido com êxito!");
 				} catch (Exception err) {
-					entradaTextAreaStatus.setText(String.format("Erro ao inserir carro! %s", err.getMessage()));
+					textareaEntradaStatus.setText(String.format("Erro ao inserir carro! %s", err.getMessage()));
 				}
 			}
 		});
-
-
-		JPanel consulta = new JPanel();
-		consulta.setLayout(null);
-		consulta.setBounds(0, 0, 434, 261);
-		frameValetinho.getContentPane().add(consulta);
-
-		entradaButtonCancelar.addActionListener(new ActionListener() {
+		
+		btnEntradaCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(home);
+				frameValetinho.setContentPane(panelHome);
 			}
 		});
 
-		JButton consultaButtonCancelar = new JButton("Cancelar");
-		consultaButtonCancelar.setBounds(142, 202, 89, 23);
-		consulta.add(consultaButtonCancelar);
-
-		JLabel consultaLabelDescricao = new JLabel("Digite a placa a ser consultada.");
-		consultaLabelDescricao.setBounds(43, 11, 334, 23);
-		consulta.add(consultaLabelDescricao);
-
-		JLabel consultaLabelPlaca = new JLabel("Placa");
-		consultaLabelPlaca.setBounds(43, 45, 46, 14);
-		consulta.add(consultaLabelPlaca);
-
-		JTextArea consultaTextAreaStatus = new JTextArea();
-		consultaTextAreaStatus.setWrapStyleWord(true);
-		consultaTextAreaStatus.setLineWrap(true);
-		consultaTextAreaStatus.setEnabled(false);
-		consultaTextAreaStatus.setEditable(false);
-		consultaTextAreaStatus.setBounds(43, 98, 334, 93);
-		consulta.add(consultaTextAreaStatus);
-
-		JButton consultaButtonConfirmar = new JButton("Confirmar");
-		consultaButtonConfirmar.setBounds(43, 202, 89, 23);
-		consulta.add(consultaButtonConfirmar);
-
-		consultaTextFieldPlaca = new JTextField();
-		consultaTextFieldPlaca.setColumns(10);
-		consultaTextFieldPlaca.setBounds(43, 64, 143, 23);
-		consulta.add(consultaTextFieldPlaca);
-
-		JPanel saida = new JPanel();
-		saida.setBounds(0, 0, 434, 261);
-		frameValetinho.getContentPane().add(saida);
-		saida.setLayout(null);
-
-		JLabel saidaLabelVaga = new JLabel("Vaga de Saída:");
-		saidaLabelVaga.setBounds(48, 47, 94, 25);
-		saida.add(saidaLabelVaga);
-
-		saidaTextFieldVaga = new JTextField();
-		saidaTextFieldVaga.setBounds(147, 49, 89, 20);
-		saida.add(saidaTextFieldVaga);
-		saidaTextFieldVaga.setColumns(10);
-
-		JButton sairButtonConfirmar = new JButton("Confirmar");
-		sairButtonConfirmar.setBounds(48, 92, 89, 23);
-		saida.add(sairButtonConfirmar);
-
-		JButton sairButtonCancelar = new JButton("Cancelar");
-		sairButtonCancelar.setBounds(147, 92, 89, 23);
-		saida.add(sairButtonCancelar);
-
-		JTextArea saidaTextArea = new JTextArea();
-		saidaTextArea.setEditable(false);
-		saidaTextArea.setBounds(48, 141, 188, 52);
-		saida.add(saidaTextArea);
-
-		sairButtonCancelar.addActionListener(new ActionListener() {
+		btnSairCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(home);
+				frameValetinho.setContentPane(panelHome);
 			}
 		});
 
 
-		sairButtonConfirmar.addActionListener(new ActionListener() {
+		btnSairConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {		
-					estacionamento.sair(Integer.parseInt(saidaTextFieldVaga.getText()));
-					saidaTextArea.setText("Vaga desocupada com êxito!");
+					estacionamento.sair(Integer.parseInt(textfieldSaidaVaga.getText()));
+					textareaSaida.setText("Vaga desocupada com êxito!");
 				}
 
 				catch (Exception err) {
-					saidaTextArea.setText(String.format(err.getMessage()));
+					textareaSaida.setText(String.format(err.getMessage()));
 				}
 			}
 		});
 
-		entrada_1.addActionListener(new ActionListener() {
+		btnHomeEntrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(entrada);
+				frameValetinho.setContentPane(panelEntrada);
 			}
 		});
 
-		saida_1.addActionListener(new ActionListener() {
+		btnHomeSaida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(saida);
+				frameValetinho.setContentPane(panelSaida);
 			}
 		});
 
-		homeConsultaButton.addActionListener(new ActionListener() {
+		btnHomeConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(consulta);
+				frameValetinho.setContentPane(panelConsulta);
 			}
 		});
-		entradaButtonCancelar.addActionListener(new ActionListener() {
+		
+		btnEntradaCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(home);
-			}
-		});
-
-		consultaButtonCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(home);
+				frameValetinho.setContentPane(panelHome);
 			}
 		});
 
-		consultaButtonConfirmar.addActionListener(new ActionListener() {
+		btnConsultaCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameValetinho.setContentPane(panelHome);
+			}
+		});
+
+		btnConsultaConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String placa = consultaTextFieldPlaca.getText();
+					String placa = textfieldConsultaPlaca.getText();
 					int vaga = estacionamento.consultarPlaca(placa);
 					if (vaga > 0)
-						consultaTextAreaStatus.setText(String.format("A placa %s está na vaga %s", placa, vaga));
+						textareaConsultaStatus.setText(String.format("A placa %s está na vaga %s", placa, vaga));
 					else
-						consultaTextAreaStatus.setText("A placa não foi encontrada!");
+						textareaConsultaStatus.setText("A placa não foi encontrada!");
 
 				} catch (Exception err) {
-					consultaTextAreaStatus.setText(String.format("Erro ao inserir carro! %s", err.getMessage()));
+					textareaConsultaStatus.setText(String.format("Erro ao inserir carro! %s", err.getMessage()));
 				}
 			}
 		});
@@ -355,7 +387,7 @@ public class GUITeste {
 		int tamanho = vagasAtuais.length;
 
 		for (int i = 0; i < tamanho; i++) {
-			txtVagas.append(String.format("%s%n",vagasAtuais[i]));
+			textareaHomeVagas.append(String.format("%s%n",vagasAtuais[i]));
 		}
 
 	}
