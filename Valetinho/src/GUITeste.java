@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import java.awt.Toolkit;
 
 public class GUITeste {
 
@@ -28,8 +30,8 @@ public class GUITeste {
 	private JTextField textfieldTransferenciaDestino;
 	private Estacionamento estacionamento;
 	private JPanel panelHome;
-	private JButton btnHomeVagas;
-	private JButton btnHomeSituacao;
+	private JButton btnHomeLivres;
+	private JButton btnHomeAtualizar;
 	private JButton btnHomeConsulta;
 	private JButton btnHomeEntrada;
 	private JButton btnHomeTransferir;
@@ -97,6 +99,7 @@ public class GUITeste {
 	 */
 	private void initialize() {
 		frameValetinho = new JFrame();
+		frameValetinho.setIconImage(Toolkit.getDefaultToolkit().getImage(GUITeste.class.getResource("/images/valetinhoIcon.png")));
 		frameValetinho.setTitle("Valetinho");
 		frameValetinho.setBounds(100, 100, 449, 300);
 		frameValetinho.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,15 +110,13 @@ public class GUITeste {
 		panelHome.setLayout(null);
 		frameValetinho.getContentPane().add(panelHome);
 
-		
+		btnHomeAtualizar = new JButton("Atualizar");
+		btnHomeAtualizar.setBounds(110, 11, 89, 23);
+		panelHome.add(btnHomeAtualizar);
 
-		btnHomeSituacao = new JButton("Situação");
-		btnHomeSituacao.setBounds(110, 11, 89, 23);
-		panelHome.add(btnHomeSituacao);
-
-		btnHomeVagas = new JButton("Vagas");
-		btnHomeVagas.setBounds(219, 11, 89, 23);
-		panelHome.add(btnHomeVagas);
+		btnHomeLivres = new JButton("Livres");
+		btnHomeLivres.setBounds(219, 11, 89, 23);
+		panelHome.add(btnHomeLivres);
 
 		btnHomeConsulta = new JButton("Consulta");
 		btnHomeConsulta.setBounds(110, 171, 89, 23);
@@ -138,6 +139,7 @@ public class GUITeste {
 		panelHome.add(scrollPane);
 		
 		listHomeVagas = new JList<>();
+		
 		scrollPane.setViewportView(listHomeVagas);
 		atualizarVagas();
 
@@ -179,14 +181,12 @@ public class GUITeste {
 		textareaEntradaStatus.setBounds(43, 98, 334, 93);
 		panelEntrada.add(textareaEntradaStatus);
 		btnEntradaConfirmar = new JButton("Confirmar");
-		frameValetinho.getContentPane().add(panelEntrada);
 		btnEntradaConfirmar.setBounds(43, 202, 89, 23);
 		panelEntrada.add(btnEntradaConfirmar);
 
 		panelTransferir = new JPanel();
 		panelTransferir.setBounds(0, 0, 434, 261);
 		panelTransferir.setLayout(null);
-		frameValetinho.getContentPane().add(panelTransferir);
 		
 		lblTransferenciaTitulo = new JLabel("Transferir");
 		lblTransferenciaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -223,7 +223,6 @@ public class GUITeste {
 		panelConsulta = new JPanel();
 		panelConsulta.setLayout(null);
 		panelConsulta.setBounds(0, 0, 434, 261);
-		frameValetinho.getContentPane().add(panelConsulta);
 
 
 		btnConsultaCancelar = new JButton("Cancelar");
@@ -257,7 +256,6 @@ public class GUITeste {
 
 		panelSaida = new JPanel();
 		panelSaida.setBounds(0, 0, 434, 261);
-		frameValetinho.getContentPane().add(panelSaida);
 		panelSaida.setLayout(null);
 
 		lblSaidaVaga = new JLabel("Vaga de Saída:");
@@ -287,6 +285,8 @@ public class GUITeste {
 				frameValetinho.setContentPane(panelTransferir);
 			}
 		});
+		
+		
 		
 		btnTransferenciaConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -347,6 +347,20 @@ public class GUITeste {
 				catch (Exception err) {
 					textareaSaida.setText(String.format(err.getMessage()));
 				}
+			}
+		});
+		
+		btnHomeAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				atualizarVagas();
+				JOptionPane.showInternalMessageDialog(frameValetinho.getContentPane(), "Vagas atualizadas!");
+			}
+		});
+		
+		btnHomeLivres.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				atualizarVagas(estacionamento.listarLivres());
+				
 			}
 		});
 
@@ -420,10 +434,21 @@ public class GUITeste {
 
 		for (int i = 0; i < tamanho; i++) {
 			if (vagasAtuais[i] == null) {
-				model.addElement(String.format("%s - %s", i+1, "Vaga"));
+				model.addElement(String.format("%s - %s", i+1, "Livre"));
 			} else {
 				model.addElement(String.format("%s - %s", i+1, vagasAtuais[i]));
 			}
+		}
+
+		listHomeVagas.setModel(model);
+	}
+	
+	private void atualizarVagas(ArrayList<Integer> vagasLivres) {
+
+		DefaultListModel<String> model = new DefaultListModel<>();
+
+		for (int i : vagasLivres) {
+			model.addElement(String.format("%s - %s", i, "Livre"));
 		}
 
 		listHomeVagas.setModel(model);
