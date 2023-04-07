@@ -2,7 +2,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class GUITeste {
 
@@ -28,7 +34,6 @@ public class GUITeste {
 	private JButton btnHomeEntrada;
 	private JButton btnHomeTransferir;
 	private JButton btnHomeSaida;
-	private JTextArea textareaHomeVagas;
 	private JPanel panelEntrada;
 	private JButton btnEntradaCancelar;
 	private JLabel lblEntradaDescricao;
@@ -53,6 +58,9 @@ public class GUITeste {
 	private JButton btnSairConfirmar;
 	private JButton btnSairCancelar;
 	private JTextArea textareaSaida;
+	private JList<String> listHomeVagas;
+	private JScrollPane scrollPane;
+	private DefaultListModel<String> modelHomeVagas;
 	
 	/**
 	 * Launch the application.
@@ -124,12 +132,14 @@ public class GUITeste {
 		btnHomeSaida = new JButton("Saída");
 		btnHomeSaida.setBounds(219, 205, 89, 23);
 		panelHome.add(btnHomeSaida);
-
-		textareaHomeVagas = new JTextArea();
-		textareaHomeVagas.setEnabled(false);
-		textareaHomeVagas.setEditable(false);
-		textareaHomeVagas.setBounds(110, 45, 198, 115);
-		panelHome.add(textareaHomeVagas);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(130, 45, 161, 115);
+		panelHome.add(scrollPane);
+		
+		listHomeVagas = new JList<>();
+		scrollPane.setViewportView(listHomeVagas);
+		atualizarVagas();
 
 		panelEntrada = new JPanel();
 		panelEntrada.setBounds(0, 0, 434, 261);
@@ -297,6 +307,7 @@ public class GUITeste {
 		btnTransferenciaCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(panelHome);
+				atualizarVagas();
 			}
 		});
 
@@ -314,12 +325,14 @@ public class GUITeste {
 		btnEntradaCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(panelHome);
+				atualizarVagas();
 			}
 		});
 
 		btnSairCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(panelHome);
+				atualizarVagas();
 			}
 		});
 
@@ -358,12 +371,14 @@ public class GUITeste {
 		btnEntradaCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(panelHome);
+				atualizarVagas();
 			}
 		});
 
 		btnConsultaCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(panelHome);
+				atualizarVagas();
 			}
 		});
 
@@ -382,14 +397,36 @@ public class GUITeste {
 				}
 			}
 		});
+		
+		frameValetinho.addWindowListener( new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				try {
+					estacionamento.gravarDados();
+				} catch (Exception err) {
+					JOptionPane.showMessageDialog(null, "Falha ao gravar dados!");
+				}
+			}
+		});
+		
 
+	}
+	
+	private void atualizarVagas() {
+
+		DefaultListModel<String> model = new DefaultListModel<>();
 		String [] vagasAtuais = this.estacionamento.listarGeral();
+
 		int tamanho = vagasAtuais.length;
 
 		for (int i = 0; i < tamanho; i++) {
-			textareaHomeVagas.append(String.format("%s%n",vagasAtuais[i]));
+			if (vagasAtuais[i] == null) {
+				model.addElement(String.format("%s - %s", i+1, "Vaga"));
+			} else {
+				model.addElement(String.format("%s - %s", i+1, vagasAtuais[i]));
+			}
 		}
 
+		listHomeVagas.setModel(model);
 	}
 
 	private String [][] extrairVagas() {
