@@ -331,23 +331,18 @@ public class Valetinho {
 
 					estacionamento.entrar(placa, vaga);
 					textareaEntradaStatus.append(String.format("Carro de placa %s inserido na vaga %s!%n", placa, vaga));
-					//JOptionPane.showInternalMessageDialog(panelEntrada, "Placa inserida com sucesso!");
-				} catch (Exception err) {
+				} catch (NumberFormatException err) {
+					String vaga = textfieldSaidaVaga.getText();
+					JOptionPane.showInternalMessageDialog(panelEntrada, String.format("Vaga %s inválida! Somente números inteiros!", vaga));
+				}
+				catch (Exception err) {
 					String placa = textfieldEntradaPlaca.getText();
 					int vaga = Integer.parseInt(textfieldEntradaVaga.getText());
-
 					JOptionPane.showInternalMessageDialog(panelEntrada, String.format("Erro ao inserir placa %s na vaga %s! %s", placa, vaga, err.getMessage()));
 				}
 			}
 		});
-		
-		btnEntradaVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(panelHome);
-				atualizarVagas();
-			}
-		});
-		
+
 		btnEntradaVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(panelHome);
@@ -394,10 +389,9 @@ public class Valetinho {
 					estacionamento.sair(vaga);
 					textareaSaida.append(String.format("Vaga %s desocupada com êxito!", vaga));
 				}
-
 				catch (NumberFormatException err) {
-					int vaga = Integer.parseInt(textfieldSaidaVaga.getText());
-					JOptionPane.showInternalMessageDialog(panelSaida, String.format("Vaga  %s inválida! Somente números inteiros!", vaga));
+					String vaga = textfieldSaidaVaga.getText();
+					JOptionPane.showInternalMessageDialog(panelSaida, String.format("Vaga %s inválida! Somente números inteiros!", vaga));
 				}
 				catch (Exception err) {
 					int vaga = Integer.parseInt(textfieldSaidaVaga.getText());
