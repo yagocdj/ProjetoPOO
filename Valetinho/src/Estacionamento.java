@@ -39,9 +39,9 @@ public class Estacionamento {
 	}
 
 	public void sair(int vaga) throws Exception {
-		if (placas[vaga-1] == null) 
-			throw new Exception("Vaga vazia!");
-		else {
+		if (!(vaga > 0 && vaga <= placas.length))
+			throw new Exception("Vaga inválida!");
+		if (placas[vaga-1] != null) {
 
 			FileWriter arquivoHistorico = new FileWriter(
 					"Valetinho/data/historico.csv", true);
@@ -55,6 +55,8 @@ public class Estacionamento {
 			arquivoHistorico.close();
 
 			placas[vaga - 1] = null;
+		} else {
+			throw new Exception("Vaga vazia!");
 		}
 	}
 

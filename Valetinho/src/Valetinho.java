@@ -339,13 +339,14 @@ public class Valetinho {
 
 		btnSairConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {		
+				try {
 					estacionamento.sair(Integer.parseInt(textfieldSaidaVaga.getText()));
 					textareaSaida.setText("Vaga desocupada com êxito!");
 				}
 
 				catch (Exception err) {
 					textareaSaida.setText(String.format(err.getMessage()));
+					System.out.println(err);  // tirar depois
 				}
 			}
 		});
