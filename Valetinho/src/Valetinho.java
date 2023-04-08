@@ -387,7 +387,7 @@ public class Valetinho {
 				try {
 					int vaga = Integer.parseInt(textfieldSaidaVaga.getText());
 					estacionamento.sair(vaga);
-					textareaSaida.append(String.format("Vaga %s desocupada com êxito!", vaga));
+					textareaSaida.append(String.format("Vaga %s desocupada com êxito!%n", vaga));
 				}
 				catch (NumberFormatException err) {
 					String vaga = textfieldSaidaVaga.getText();
