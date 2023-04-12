@@ -244,7 +244,11 @@ public class Valetinho {
 		
 		scrollPaneTransferir = new JScrollPane();
 		scrollPaneTransferir.setBounds(43, 98, 334, 180);
+		
 		textareaTransferirStatus = new JTextArea();
+		textareaTransferirStatus.setWrapStyleWord(true);
+		textareaTransferirStatus.setLineWrap(true);
+		textareaTransferirStatus.setEditable(false);
 		scrollPaneTransferir.setViewportView(textareaTransferirStatus);
 		panelTransferir.add(scrollPaneTransferir);
 
@@ -405,13 +409,16 @@ public class Valetinho {
 				try {
 					int vagaOrigem = Integer.parseInt(textfieldTransferenciaOrigem.getText());
 					int vagaDestino = Integer.parseInt(textfieldTransferenciaDestino.getText());
-					int opcao = JOptionPane.showConfirmDialog(
-							null,
+					int opcao = JOptionPane.showInternalConfirmDialog(
+							panelTransferir,
 							String.format("Deseja mesmo transferir o veículo da vaga %s para a vaga %s?", vagaOrigem, vagaDestino));
 					if (opcao == JOptionPane.YES_NO_OPTION)
 						estacionamento.transferir(vagaOrigem, vagaDestino);
+						textareaTransferirStatus.append(String.format("Carro na vaga %s transferido para a vaga %s!%n", vagaOrigem, vagaDestino));
+				} catch (NumberFormatException err) {
+					JOptionPane.showInternalMessageDialog(panelTransferir, "Vaga(s) inválida(s)! Somente números inteiros!");
 				} catch (Exception err) {
-					JOptionPane.showMessageDialog(null, "Ops! " + err.getMessage());
+					JOptionPane.showInternalMessageDialog(panelTransferir, String.format("Erro! %s", err.getMessage()));
 				}
 			}
 		});
