@@ -16,46 +16,48 @@ public class Estacionamento {
 		}
 		placas = new String[n];
 	}
-
-	public void entrar(String placa, int vaga) throws Exception {
-		if (!(vaga > 0 && vaga <= placas.length))
-			throw new Exception("Vaga inválida!");
-		if (placas[vaga-1] == null) {
-
+	
+	private void gravarNoHistorico(String operacao, int vaga, String placa) throws Exception {
+		try {
 			FileWriter arquivoHistorico = new FileWriter(
 					"Valetinho/data/historico.csv", true);
 			LocalDateTime dataAtual = LocalDateTime.now();
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 			String dataFormatada = dataAtual.format(formato);
-			placas[vaga - 1] = placa;
-			arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
-					dataFormatada, vaga, placas[vaga-1], "ENTRADA"));
-
+			
+			if (operacao.equals("ENTRADA")) {
+				placas[vaga - 1] = placa;
+				arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
+					dataFormatada, vaga, placa, operacao));
+			} else {
+				arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
+					dataFormatada, vaga, placas[vaga - 1], operacao));
+				placas[vaga - 1] = null;
+			}
+	
 			arquivoHistorico.flush();
 			arquivoHistorico.close();
+		} catch (IOException err) {
+			throw new Exception("Houve problemas na hora de ler/gravar no historico.");
 		}
+	}
+
+	public void entrar(String placa, int vaga) throws Exception {
+		if (!(vaga > 0 && vaga <= placas.length))
+			throw new Exception("Vaga inválida!");
+		if (placas[vaga-1] == null)
+			gravarNoHistorico("ENTRADA", vaga, placa);
 		else 
 			throw new Exception("Vaga ocupada!");
 	}
 
 	public void sair(int vaga) throws Exception {
-		if (placas[vaga-1] == null) 
+		if (!(vaga > 0 && vaga <= placas.length))
+			throw new Exception("Vaga inválida!");
+		if (placas[vaga-1] != null)
+			gravarNoHistorico("SAIDA", vaga, null);
+		else
 			throw new Exception("Vaga vazia!");
-		else {
-
-			FileWriter arquivoHistorico = new FileWriter(
-					"Valetinho/data/historico.csv", true);
-			LocalDateTime dataAtual = LocalDateTime.now();
-			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-			String dataFormatada = dataAtual.format(formato);
-			arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
-					dataFormatada, vaga, placas[vaga-1], "SAIDA"));
-
-			arquivoHistorico.flush();
-			arquivoHistorico.close();
-
-			placas[vaga - 1] = null;
-		}
 	}
 
 	public int consultarPlaca(String placa) throws Exception {
