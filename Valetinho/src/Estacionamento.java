@@ -19,14 +19,29 @@ public class Estacionamento {
 		Arrays.fill(placas, "vazia");
 	}
 	
+	/**
+	 * Este método retorna true caso a vaga passada estiver vazia ou false caso contrário.
+	 * @param vaga -> vaga a ser checada.
+	 * @return boolean -> true caso vazia ou false caso preenchida 
+	 */
 	private boolean vagaEstaVazia(int vaga) {
 		return placas[vaga-1].equals("vazia");
 	}
 	
+	/**
+	 * Este método retorna true caso a vaga passada estiver preenchida ou false caso contrário.
+	 * @param vaga -> vaga a ser checada.
+	 * @return boolean -> true caso preenchida ou false caso vazia 
+	 */
 	private boolean vagaPossuiCarro(int vaga) {
 		return !(placas[vaga-1].equals("vazia"));
 	}
 	
+	/**
+	 * Este método retorna true caso a vaga passada seja inválida e false caso contrário.
+	 * @param vaga -> vaga a ser checada.
+	 * @return boolean
+	 */
 	private boolean vagaInvalida(int vaga) {
 		return !(vaga > 0 && vaga <= placas.length);
 	}
@@ -74,17 +89,12 @@ public class Estacionamento {
 			throw new Exception("Vaga vazia!");
 	}
 
-	public int consultarPlaca(String placa) throws Exception {
-		try {
-			for (int i = 0; i < placas.length; i++) {
-				if (vagaPossuiCarro(i+1) && placas[i].equals(placa))
-					return i + 1;
-			} 
-			return -1;
-			
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
+	public int consultarPlaca(String placa) {
+		for (int i = 0; i < placas.length; i++) {
+			if (vagaPossuiCarro(i+1) && placas[i].equals(placa))
+				return i + 1;
+		} 
+		return -1;
 	}
 
 	public void transferir(int vaga1, int vaga2) throws Exception {
