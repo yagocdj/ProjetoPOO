@@ -363,16 +363,12 @@ public class Valetinho {
 
 		btnConsultaConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					String placa = textfieldConsultaPlaca.getText();
-					int vaga = estacionamento.consultarPlaca(placa);
-					if (vaga > 0)
-						textareaConsultaStatus.append(String.format("A placa %s está na vaga %s!%n", placa, vaga));
-					else
-						JOptionPane.showInternalMessageDialog(panelConsulta, String.format("Placa %s não encontrada!", placa, vaga));
-				} catch (Exception err) {
-					JOptionPane.showInternalMessageDialog(panelConsulta, String.format("Erro! %s", err.getMessage()));
-				}
+				String placa = textfieldConsultaPlaca.getText();
+				int vaga = estacionamento.consultarPlaca(placa);
+				if (vaga > 0)
+					textareaConsultaStatus.append(String.format("A placa %s está na vaga %s!%n", placa, vaga));
+				else
+					JOptionPane.showInternalMessageDialog(panelConsulta, String.format("Placa %s não encontrada!", placa, vaga));
 			}
 		});
 		
@@ -476,16 +472,12 @@ public class Valetinho {
 	private void atualizarVagas() {
 
 		DefaultListModel<String> model = new DefaultListModel<>();
-		String [] vagasAtuais = this.estacionamento.listarGeral();
+		String[] vagasAtuais = this.estacionamento.listarGeral();
 
 		int tamanho = vagasAtuais.length;
 
 		for (int i = 0; i < tamanho; i++) {
-			if (vagasAtuais[i] == null) {
-				model.addElement(String.format("%s - %s", i+1, "Livre"));
-			} else {
-				model.addElement(String.format("%s - %s", i+1, vagasAtuais[i]));
-			}
+			model.addElement(String.format("%s - %s", i+1, vagasAtuais[i]));
 		}
 
 		listHomeVagas.setModel(model);
@@ -495,8 +487,8 @@ public class Valetinho {
 
 		DefaultListModel<String> model = new DefaultListModel<>();
 
-		for (int i : vagasLivres) {
-			model.addElement(String.format("%s - %s", i, "Livre"));
+		for (int vaga : vagasLivres) {
+			model.addElement(String.format("%s - %s", vaga, "vazia"));
 		}
 
 		listHomeVagas.setModel(model);
