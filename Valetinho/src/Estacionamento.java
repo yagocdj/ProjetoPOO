@@ -16,25 +16,25 @@ public class Estacionamento {
 			throw new Exception("O número de vagas deve ser maior que 0!");
 		}
 		placas = new String[n];
-		Arrays.fill(placas, "vazia");
+		Arrays.fill(placas, "livre");
 	}
 	
 	/**
-	 * Este método retorna true caso a vaga passada estiver vazia ou false caso contrário.
+	 * Este método retorna true caso a vaga passada estiver livre ou false caso contrário.
 	 * @param vaga -> vaga a ser checada.
-	 * @return boolean -> true caso vazia ou false caso preenchida 
+	 * @return boolean -> true caso livre ou false caso preenchida 
 	 */
 	private boolean vagaEstaVazia(int vaga) {
-		return placas[vaga-1].equals("vazia");
+		return placas[vaga-1].equals("livre");
 	}
 	
 	/**
 	 * Este método retorna true caso a vaga passada estiver preenchida ou false caso contrário.
 	 * @param vaga -> vaga a ser checada.
-	 * @return boolean -> true caso preenchida ou false caso vazia 
+	 * @return boolean -> true caso preenchida ou false caso livre 
 	 */
 	private boolean vagaPossuiCarro(int vaga) {
-		return !(placas[vaga-1].equals("vazia"));
+		return !(placas[vaga-1].equals("livre"));
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class Estacionamento {
 			} else {
 				arquivoHistorico.write(String.format("%s;%s;%s;%s%n",
 					dataFormatada, vaga, placas[vaga - 1], operacao));
-				placas[vaga - 1] = "vazia";
+				placas[vaga - 1] = "livre";
 			}
 	
 			arquivoHistorico.flush();
@@ -104,7 +104,7 @@ public class Estacionamento {
 		if (vagaPossuiCarro(vaga1)) { 
 			if (vagaEstaVazia(vaga2)) {
 				placas[vaga2 - 1] = placas[vaga1 - 1];
-				placas[vaga1 - 1] = "vazia";
+				placas[vaga1 - 1] = "livre";
 			} else 
 				throw new Exception("Vaga de destino ocupada!");
 		} else 
