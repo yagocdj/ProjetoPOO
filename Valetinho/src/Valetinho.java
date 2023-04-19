@@ -112,31 +112,39 @@ public class Valetinho {
 		frameValetinho.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameValetinho.getContentPane().setLayout(null);
 		
+		
+		//INSTANCIAÇÃO DO PAINEL PRINCIPAL
 		panelHome = new JPanel();
 		panelHome.setBounds(0, 0, 434, 335);
 		panelHome.setLayout(null);
 
 		btnHomeAtualizar = new JButton("Atualizar");
 		btnHomeAtualizar.setBounds(110, 67, 89, 23);
+		btnHomeAtualizar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelHome.add(btnHomeAtualizar);
 
 		btnHomeLivres = new JButton("Livres");
 		btnHomeLivres.setBounds(219, 67, 89, 23);
+		btnHomeLivres.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelHome.add(btnHomeLivres);
 
 		btnHomeConsulta = new JButton("Consulta");
 		btnHomeConsulta.setBounds(110, 251, 89, 23);
+		btnHomeConsulta.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelHome.add(btnHomeConsulta);
 
 		btnHomeEntrada = new JButton("Entrada");
 		btnHomeEntrada.setBounds(110, 285, 89, 23);
+		btnHomeEntrada.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelHome.add(btnHomeEntrada);
 
 		btnHomeTransferir = new JButton("Transferir");
+		btnHomeTransferir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnHomeTransferir.setBounds(219, 251, 89, 23);
 		panelHome.add(btnHomeTransferir);
 
 		btnHomeSaida = new JButton("Saída");
+		btnHomeSaida.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnHomeSaida.setBounds(219, 285, 89, 23);
 		panelHome.add(btnHomeSaida);
 
@@ -154,14 +162,14 @@ public class Valetinho {
 		lblHomeTitulo.setBounds(129, 11, 161, 45);
 		panelHome.add(lblHomeTitulo);
 		
-		
+		//INSTANCIAÇÃO DO PAINEL DE CONSULTA
 		panelConsulta = new JPanel();
 		panelConsulta.setLayout(null);
 		panelConsulta.setBounds(0, 0, 434, 335);
 
-
 		btnConsultaVoltar = new JButton("Voltar");
 		btnConsultaVoltar.setBounds(142, 289, 89, 23);
+		btnConsultaVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelConsulta.add(btnConsultaVoltar);
 
 		lblConsultaDescricao = new JLabel("Digite a placa a ser consultada.");
@@ -185,6 +193,7 @@ public class Valetinho {
 
 		btnConsultaConfirmar = new JButton("Confirmar");
 		btnConsultaConfirmar.setBounds(43, 289, 89, 23);
+		btnConsultaConfirmar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelConsulta.add(btnConsultaConfirmar);
 
 		textfieldConsultaPlaca = new JTextField();
@@ -193,13 +202,14 @@ public class Valetinho {
 		panelConsulta.add(textfieldConsultaPlaca);
 		
 
-		
+		//INSTANCIAÇÃO DO PAINEL DE ENTRADA
 		panelEntrada = new JPanel();
 		panelEntrada.setBounds(0, 0, 434, 335);
 		panelEntrada.setLayout(null);
 
 		btnEntradaVoltar = new JButton("Voltar");
 		btnEntradaVoltar.setBounds(142, 289, 89, 23);
+		btnEntradaVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelEntrada.add(btnEntradaVoltar);
 
 		textfieldEntradaPlaca = new JTextField();
@@ -233,11 +243,14 @@ public class Valetinho {
 		textareaEntradaStatus.setWrapStyleWord(true);
 		textareaEntradaStatus.setLineWrap(true);
 		textareaEntradaStatus.setEditable(false);
+		
 		btnEntradaConfirmar = new JButton("Confirmar");
+		btnEntradaConfirmar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEntradaConfirmar.setBounds(43, 289, 89, 23);
+		
 		panelEntrada.add(btnEntradaConfirmar);
 		
-		
+		//INSTANCIAÇÃO DO PAIEL DE TRANSFERÊNCIA
 		panelTransferir = new JPanel();
 		panelTransferir.setBounds(0, 0, 434, 335);
 		panelTransferir.setLayout(null);
@@ -277,14 +290,16 @@ public class Valetinho {
 
 		btnTransferenciaConfirmar = new JButton("Confirmar");
 		btnTransferenciaConfirmar.setBounds(43, 289, 89, 23);
+		btnTransferenciaConfirmar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelTransferir.add(btnTransferenciaConfirmar);
 
 		btnTransferenciaVoltar = new JButton("Voltar");
 		btnTransferenciaVoltar.setBounds(142, 289, 89, 23);
+		btnTransferenciaVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelTransferir.add(btnTransferenciaVoltar);
 		
 		
-		
+		//INSTANCIAÇÃO DO PAINEL DE SAÍDA
 		panelSaida = new JPanel();
 		panelSaida.setBounds(0, 0, 434, 335);
 		panelSaida.setLayout(null);
@@ -304,10 +319,12 @@ public class Valetinho {
 
 		btnSairConfirmar = new JButton("Confirmar");
 		btnSairConfirmar.setBounds(43, 289, 89, 23);
+		btnSairConfirmar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelSaida.add(btnSairConfirmar);
 
 		btnSairVoltar = new JButton("Voltar");
 		btnSairVoltar.setBounds(142, 289, 89, 23);
+		btnSairVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelSaida.add(btnSairVoltar);
 
 		scrollPaneSaida = new JScrollPane();
@@ -319,14 +336,7 @@ public class Valetinho {
 		textareaSaida.setEditable(false);
 
 		
-		
-		btnSairVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frameValetinho.setContentPane(panelHome);
-				atualizarVagas();
-			}
-		});
-
+		//EVENTOS DO PAINEL DE ENTRADA
 		btnEntradaConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -353,7 +363,9 @@ public class Valetinho {
 				atualizarVagas();
 			}
 		});
-
+		
+		
+		//EVENTOS DO PAINEL DE CONSULTA
 		btnConsultaVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(panelHome);
@@ -363,29 +375,17 @@ public class Valetinho {
 
 		btnConsultaConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					String placa = textfieldConsultaPlaca.getText();
-					int vaga = estacionamento.consultarPlaca(placa);
-					if (vaga > 0)
-						textareaConsultaStatus.append(String.format("A placa %s está na vaga %s!%n", placa, vaga));
-					else
-						JOptionPane.showInternalMessageDialog(panelConsulta, String.format("Placa %s não encontrada!", placa, vaga));
-				} catch (Exception err) {
-					JOptionPane.showInternalMessageDialog(panelConsulta, String.format("Erro! %s", err.getMessage()));
-				}
-			}
-		});
-		
-		frameValetinho.addWindowListener( new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				try {
-					estacionamento.gravarDados();
-				} catch (Exception err) {
-					JOptionPane.showMessageDialog(null, "Falha ao gravar dados!");
-				}
+				String placa = textfieldConsultaPlaca.getText();
+				int vaga = estacionamento.consultarPlaca(placa);
+				if (vaga > 0)
+					textareaConsultaStatus.append(String.format("A placa %s está na vaga %s!%n", placa, vaga));
+				else
+					JOptionPane.showInternalMessageDialog(panelConsulta, String.format("Placa %s não encontrada!", placa, vaga));
 			}
 		});
 
+		
+		//EVENTOS DO PAINEL DE SAÍDA
 		btnSairConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -403,18 +403,24 @@ public class Valetinho {
 				}
 			}
 		});
+		
+		btnSairVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameValetinho.setContentPane(panelHome);
+				atualizarVagas();
+			}
+		});
 
+		
+		//EVENTOS DO PAINEL DE TRANSFERÊNCIA
 		btnTransferenciaConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int vagaOrigem = Integer.parseInt(textfieldTransferenciaOrigem.getText());
 					int vagaDestino = Integer.parseInt(textfieldTransferenciaDestino.getText());
-					int opcao = JOptionPane.showInternalConfirmDialog(
-							panelTransferir,
-							String.format("Deseja mesmo transferir o veículo da vaga %s para a vaga %s?", vagaOrigem, vagaDestino));
-					if (opcao == JOptionPane.YES_NO_OPTION)
-						estacionamento.transferir(vagaOrigem, vagaDestino);
-						textareaTransferirStatus.append(String.format("Carro na vaga %s transferido para a vaga %s!%n", vagaOrigem, vagaDestino));
+					estacionamento.transferir(vagaOrigem, vagaDestino);
+					textareaTransferirStatus.append(String.format("Carro na vaga %s transferido para a vaga %s!%n", vagaOrigem, vagaDestino));
+					
 				} catch (NumberFormatException err) {
 					JOptionPane.showInternalMessageDialog(panelTransferir, "Vaga(s) inválida(s)! Somente números inteiros!");
 				} catch (Exception err) {
@@ -430,6 +436,18 @@ public class Valetinho {
 			}
 		});
 
+		
+		//EVENTOS DA PÁGINA PRINCIPAL
+		frameValetinho.addWindowListener( new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				try {
+					estacionamento.gravarDados();
+				} catch (Exception err) {
+					JOptionPane.showMessageDialog(null, "Falha ao gravar dados!");
+				}
+			}
+		});
+		
 		btnHomeTransferir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameValetinho.setContentPane(panelTransferir);
@@ -476,16 +494,12 @@ public class Valetinho {
 	private void atualizarVagas() {
 
 		DefaultListModel<String> model = new DefaultListModel<>();
-		String [] vagasAtuais = this.estacionamento.listarGeral();
+		String[] vagasAtuais = this.estacionamento.listarGeral();
 
 		int tamanho = vagasAtuais.length;
 
 		for (int i = 0; i < tamanho; i++) {
-			if (vagasAtuais[i] == null) {
-				model.addElement(String.format("%s - %s", i+1, "Livre"));
-			} else {
-				model.addElement(String.format("%s - %s", i+1, vagasAtuais[i]));
-			}
+			model.addElement(String.format("%s - %s", i+1, vagasAtuais[i]));
 		}
 
 		listHomeVagas.setModel(model);
@@ -495,25 +509,10 @@ public class Valetinho {
 
 		DefaultListModel<String> model = new DefaultListModel<>();
 
-		for (int i : vagasLivres) {
-			model.addElement(String.format("%s - %s", i, "Livre"));
+		for (int vaga : vagasLivres) {
+			model.addElement(String.format("%s - %s", vaga, "livre"));
 		}
 
 		listHomeVagas.setModel(model);
-	}
-
-	private String [][] extrairVagas() {
-		int tamanho = estacionamento.listarGeral().length;
-		String [][] out = new String[tamanho][2];
-
-		for (int i = 0; i < tamanho; i++) {
-			for (int j = 0; j < 2; j++) {
-				if (j == 0)
-					out[i][j] = estacionamento.listarGeral()[i];
-				else
-					out[i][j] = String.format("%s",i + 1);
-			}
-		}
-		return out;
 	}
 }
